@@ -31,10 +31,35 @@ If you need more ruby versions, let us know via GitHub issues or feel free to fo
 
 ## Usage
 
-Just add similar `.drone.yml` to you project:
+Just add similar `.drone.yml` to you project *(example is compatible with Drone 0.4.0)*:
 
-```
-TBD
+```yaml
+build:
+  image: juicymo/drone-ruby
+  bash:
+	script:
+	  - mkdir -p /drone/bundle
+	  - RUBY=`cat .ruby-version`
+	  - chruby "$RUBY"
+	  - bundle install --path /drone/bundle --without "development production"
+	  - bundle exec rake db:test:prepare
+	  - bundle exec rspec
+	  - bundle exec cucumber
+cache:
+  mount:
+	- /drone/bundle
+notify:
+  email:
+	from: $$SMTP_FROM
+	host: $$SMTP_HOST
+	username: $$SMTP_USER
+	password: $$SMTP_PASS
+	recipients:
+	  - john.doe@example.com
+	when:
+	  success: false
+	  failure: false
+	  change: true
 ```
 
 At Juicymo, we use [GitLab](https://github.com/gitlabhq/gitlabhq) which is connected to our Drone CI server. With this setup Drone is able to detect all projects from GitLab automatically. After particular Ruby on Rails project is enabled for testing in Drone, all you need to do is to add, commit and push a `.drone.yml` to the git repository. Drone will automatically load it and start the integration.
