@@ -1,7 +1,7 @@
 # see https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/ for Dockerfile best practices
 
 # build me with:
-# docker build -t "juicymo/drone-ruby:1.0.0" .
+# docker build -t "juicymo/drone-ruby:1.1.0" .
 
 FROM juicymo/drone-base
 MAINTAINER Tomas Jukin <tomas.jukin@juicymo.cz>
@@ -21,6 +21,7 @@ RUN ruby-install ruby 2.1.4
 RUN ruby-install ruby 2.1.5
 RUN ruby-install ruby 2.1.6
 RUN ruby-install ruby 2.2.2
+RUN ruby-install ruby 2.2.4
 
 # install bundler for each ruby
 RUN /bin/bash -l -c "chruby 1.9.3 && gem install bundler --no-rdoc --no-ri"
@@ -29,3 +30,4 @@ RUN /bin/bash -l -c "chruby 2.1.4 && gem install bundler --no-rdoc --no-ri"
 RUN /bin/bash -l -c "chruby 2.1.5 && gem install bundler --no-rdoc --no-ri"
 RUN /bin/bash -l -c "chruby 2.1.6 && gem install bundler --no-rdoc --no-ri"
 RUN /bin/bash -l -c "chruby 2.2.2 && gem install bundler --no-rdoc --no-ri"
+RUN /bin/bash -l -c "chruby 2.2.4 && gem install bundler --no-rdoc --no-ri"
