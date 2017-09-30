@@ -8,7 +8,7 @@ MAINTAINER Tomas Jukin <tomas.jukin@juicymo.cz>
 
 RUN apk add --no-cache ruby=2.4.2-r0 ruby-bundler ruby-dev
 
-ENV BUILD_PACKAGES curl-dev build-base
+ENV BUILD_PACKAGES curl-dev build-base bash
 ENV RUBY_PACKAGES cairo-dev postgresql-dev tzdata wget postgresql=9.6.5-r0
 ENV WKHTMLTOPDF_PACKAGES gtk+ glib ttf-freefont fontconfig dbus
 
