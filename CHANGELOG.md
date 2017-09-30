@@ -1,5 +1,8 @@
 # Changelog
 
+### v2.4.2
+* Change support for MRI ruby 2.4.2
+
 ### v2.3.3
 * Change support for MRI ruby 2.3.3
 * Add compatibility with Drone 0.7.0

@@ -1,12 +1,12 @@
 # see https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/ for Dockerfile best practices
 
 # build me with:
-# docker build -t "juicymo/drone-ruby:2.3.3" .
+# docker build -t "juicymo/drone-ruby:2.4.2" .
 
 FROM alpine:3.6
 MAINTAINER Tomas Jukin <tomas.jukin@juicymo.cz>
 
-RUN apk add --no-cache ruby ruby-bundler
+RUN apk add --no-cache ruby=2.4.2-r0 ruby-bundler
 
 ENV BUILD_PACKAGES curl-dev build-base
 ENV RUBY_PACKAGES cairo-dev postgresql-dev tzdata wget postgresql=9.6.5-r0

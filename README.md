@@ -17,7 +17,7 @@ This is a Ruby image for [Drone](https://github.com/drone/drone), inspired by [4
 
 Intent of this image is CI testing of Ruby or Rails projects with Drone.
 
-This image supports `Drone 0.7.0` and `MRI Ruby 2.3.3`:
+This image supports `Drone 0.7.0` and `MRI Ruby 2.4.2`:
 
 It has a [bundler](http://bundler.io/) installed.
 
