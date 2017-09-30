@@ -1,33 +1,31 @@
 # see https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/ for Dockerfile best practices
 
 # build me with:
-# docker build -t "juicymo/drone-ruby:1.1.0" .
+# docker build -t "juicymo/drone-ruby:2.3.3" .
 
-FROM juicymo/drone-base
+FROM ruby:2.3.3-alpine
 MAINTAINER Tomas Jukin <tomas.jukin@juicymo.cz>
 
-# setup environment
+ENV BUILD_PACKAGES curl-dev build-base
+ENV RUBY_PACKAGES cairo-dev postgresql-dev tzdata wget postgresql-client
+ENV WKHTMLTOPDF_PACKAGES gtk+ glib ttf-freefont fontconfig dbus
+
+RUN apk add --no-cache \
+		$BUILD_PACKAGES \
+		$RUBY_PACKAGES \
+		$WKHTMLTOPDF_PACKAGES \
+		git \
+		imagemagick \
+		less \
+		nodejs \
+		openssh
+
+RUN wget --no-check-certificate https://github.com/kernix/wkhtmltopdf-docker-alpine/raw/master/wkhtmltopdf -P /usr/bin/
+RUN chmod a+x /usr/bin/wkhtmltopdf
+
 ENV SHELL /bin/bash
 ENV LC_ALL en_US.UTF-8
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8
 
-RUN apt-get update
-
-# install rubies
-RUN ruby-install ruby 1.9.3-p551
-RUN ruby-install ruby 2.0.0-p645
-RUN ruby-install ruby 2.1.4
-RUN ruby-install ruby 2.1.5
-RUN ruby-install ruby 2.1.6
-RUN ruby-install ruby 2.2.2
-RUN ruby-install ruby 2.2.4
-
-# install bundler for each ruby
-RUN /bin/bash -l -c "chruby 1.9.3 && gem install bundler --no-rdoc --no-ri"
-RUN /bin/bash -l -c "chruby 2.0.0 && gem install bundler --no-rdoc --no-ri"
-RUN /bin/bash -l -c "chruby 2.1.4 && gem install bundler --no-rdoc --no-ri"
-RUN /bin/bash -l -c "chruby 2.1.5 && gem install bundler --no-rdoc --no-ri"
-RUN /bin/bash -l -c "chruby 2.1.6 && gem install bundler --no-rdoc --no-ri"
-RUN /bin/bash -l -c "chruby 2.2.2 && gem install bundler --no-rdoc --no-ri"
-RUN /bin/bash -l -c "chruby 2.2.4 && gem install bundler --no-rdoc --no-ri"
+RUN gem install bundler --no-ri --no-rdoc
