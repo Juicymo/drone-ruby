@@ -3,11 +3,13 @@
 # build me with:
 # docker build -t "juicymo/drone-ruby:2.3.3" .
 
-FROM ruby:2.3.3-alpine
+FROM alpine:3.6
 MAINTAINER Tomas Jukin <tomas.jukin@juicymo.cz>
 
+RUN apk add --no-cache ruby ruby-bundler
+
 ENV BUILD_PACKAGES curl-dev build-base
-ENV RUBY_PACKAGES cairo-dev postgresql-dev tzdata wget postgresql
+ENV RUBY_PACKAGES cairo-dev postgresql-dev tzdata wget postgresql=9.6.5-r0
 ENV WKHTMLTOPDF_PACKAGES gtk+ glib ttf-freefont fontconfig dbus
 
 RUN apk add --no-cache \
