@@ -2,7 +2,8 @@
 
 We use this image on a daily basis at [Juicymo](https://www.juicymo.cz) for Continuous Integration of Ruby on Rails apps we make for our clients.
 
-[![](https://badge.imagelayers.io/juicymo/drone-ruby:latest.svg)](https://imagelayers.io/?images=juicymo/drone-ruby:latest 'Get your own badge on imagelayers.io')
+[![](https://images.microbadger.com/badges/image/juicymo/drone-ruby.svg)](https://microbadger.com/images/juicymo/drone-ruby "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/juicymo/drone-ruby.svg)](https://microbadger.com/images/juicymo/drone-ruby "Get your own version badge on microbadger.com")
 
 ## Installation
 

@@ -1,8 +1,8 @@
 # Changelog
 
 ### v2.3.3
-* Add compatibility with Drone 0.7.0
 * Change support for MRI ruby 2.3.3
+* Add compatibility with Drone 0.7.0
 * Add support to wkhtml
 * Add support to pg_dump (for schema in SQL)
 
