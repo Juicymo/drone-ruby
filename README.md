@@ -41,7 +41,7 @@ pipeline:
       - /tmp/cache:/cache
 
   build:
-    image: juicymo/drone-ruby:2.3.3
+    image: juicymo/drone-ruby
     environment:
       - RAILS_ENV=test
     commands:
@@ -57,7 +57,7 @@ pipeline:
     - /tmp/cache:/cache
 
   test:
-    image: juicymo/drone-ruby:2.3.3
+    image: juicymo/drone-ruby
     environment:
       - RAILS_ENV=test
       - DB_HOST=database
