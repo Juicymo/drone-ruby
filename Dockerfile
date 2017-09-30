@@ -7,7 +7,7 @@ FROM ruby:2.3.3-alpine
 MAINTAINER Tomas Jukin <tomas.jukin@juicymo.cz>
 
 ENV BUILD_PACKAGES curl-dev build-base
-ENV RUBY_PACKAGES cairo-dev postgresql-dev tzdata wget postgresql-client
+ENV RUBY_PACKAGES cairo-dev postgresql-dev tzdata wget postgresql
 ENV WKHTMLTOPDF_PACKAGES gtk+ glib ttf-freefont fontconfig dbus
 
 RUN apk add --no-cache \
