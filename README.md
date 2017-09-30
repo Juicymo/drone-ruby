@@ -60,7 +60,6 @@ pipeline:
     environment:
       - RAILS_ENV=test
       - DB_HOST=database
-
     commands:
       - bundle install --path ./bundle --without production,development
       - bundle exec rake db:create
