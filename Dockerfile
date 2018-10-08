@@ -8,8 +8,8 @@ MAINTAINER Tomas Jukin <tomas.jukin@juicymo.cz>
 
 RUN apk add --no-cache ruby=2.5.1-r2 ruby-bundler ruby-dev
 
-ENV BUILD_PACKAGES curl-dev build-base bash
-ENV RUBY_PACKAGES cairo-dev postgresql-dev tzdata wget postgresql=10.4-r0
+ENV BUILD_PACKAGES curl-dev build-base bash cmake clang clang-dev make gcc g++ libc-dev linux-headers
+ENV RUBY_PACKAGES cairo-dev postgresql-dev tzdata wget postgresql=10.5-r0
 ENV WKHTMLTOPDF_PACKAGES gtk+ glib ttf-freefont fontconfig dbus
 
 RUN apk add --no-cache \
