@@ -8,7 +8,7 @@ MAINTAINER Tomas Jukin <tomas.jukin@juicymo.cz>
 
 RUN apk add --no-cache ruby=2.5.1-r2 ruby-bundler ruby-dev
 
-ENV BUILD_PACKAGES curl-dev build-base bash
+ENV BUILD_PACKAGES curl-dev build-base bash cmake clang clang-dev make gcc g++ libc-dev linux-headers
 ENV RUBY_PACKAGES cairo-dev postgresql-dev tzdata wget postgresql=10.4-r0
 ENV WKHTMLTOPDF_PACKAGES gtk+ glib ttf-freefont fontconfig dbus
 
@@ -25,6 +25,10 @@ RUN apk add --no-cache \
 
 RUN wget --no-check-certificate https://github.com/kernix/wkhtmltopdf-docker-alpine/raw/master/wkhtmltopdf -P /usr/bin/
 RUN chmod a+x /usr/bin/wkhtmltopdf
+
+ADD entrypoint /usr/local/bin
+RUN chmod +x /usr/local/bin/entrypoint
+ENTRYPOINT [ "/usr/local/bin/entrypoint" ]
 
 ENV SHELL /bin/bash
 ENV LC_ALL en_US.UTF-8
