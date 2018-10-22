@@ -1,7 +1,7 @@
 # see https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/ for Dockerfile best practices
 
 # build me with:
-# docker build -t "juicymo/drone-ruby:2.5.1" .
+# docker build -t "juicymo/drone-ruby:2.4.4" .
 
 FROM alpine:3.8
 MAINTAINER Tomas Jukin <tomas.jukin@juicymo.cz>
