@@ -6,7 +6,7 @@
 FROM alpine:3.8
 MAINTAINER Tomas Jukin <tomas.jukin@juicymo.cz>
 
-RUN apk add --no-cache ruby=2.5.1-r2 ruby-bundler ruby-dev ruby-irb ruby-json ruby-rake ruby-rdoc
+RUN apk add --no-cache ruby=2.4.4 ruby-bundler ruby-dev ruby-irb ruby-json ruby-rake ruby-rdoc
 
 ENV BUILD_PACKAGES curl-dev build-base bash cmake clang clang-dev make gcc g++ libc-dev linux-headers
 ENV RUBY_PACKAGES cairo-dev postgresql-dev tzdata wget postgresql=10.5-r0
