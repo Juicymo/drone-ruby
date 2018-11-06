@@ -17,7 +17,7 @@ This is a Ruby image for [Drone](https://github.com/drone/drone), inspired by [4
 
 Intent of this image is CI testing of Ruby or Rails projects with Drone.
 
-This image supports `Drone 0.7.0` and `MRI Ruby 2.4.5`:
+This image supports `Drone 0.7.0` and `MRI Ruby 2.5.3`:
 
 It has a [bundler](http://bundler.io/) installed.
 
@@ -41,7 +41,7 @@ pipeline:
       - /tmp/cache:/cache
 
   build:
-    image: juicymo/drone-ruby:2.4.5
+    image: juicymo/drone-ruby:2.5.3
     environment:
       - RAILS_ENV=test
     commands:
@@ -57,7 +57,7 @@ pipeline:
     - /tmp/cache:/cache
 
   test:
-    image: juicymo/drone-ruby:2.4.5
+    image: juicymo/drone-ruby:2.5.3
     environment:
       - RAILS_ENV=test
       - DB_HOST=database

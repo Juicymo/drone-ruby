@@ -1,9 +1,9 @@
 # see https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/ for Dockerfile best practices
 
 # build me with:
-# docker build -t "juicymo/drone-ruby:2.4.5" .
+# docker build -t "juicymo/drone-ruby:2.5.3" .
 
-FROM ruby:2.4.5-alpine3.8
+FROM ruby:2.5.3-alpine3.8
 MAINTAINER Tomas Jukin <tomas.jukin@juicymo.cz>
 
 ENV BUILD_PACKAGES curl-dev build-base bash cmake clang clang-dev make gcc g++ libc-dev linux-headers
