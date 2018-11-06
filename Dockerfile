@@ -1,12 +1,12 @@
 # see https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/ for Dockerfile best practices
 
 # build me with:
-# docker build -t "juicymo/drone-ruby:2.5.3-r0" .
+# docker build -t "juicymo/drone-ruby:2.5.3-r1" .
 
 FROM ruby:2.5.3-alpine3.8
 MAINTAINER Tomas Jukin <tomas.jukin@juicymo.cz>
 
-ENV BUILD_PACKAGES curl-dev build-base bash cmake clang clang-dev make gcc g++ libc-dev linux-headers libxml2
+ENV BUILD_PACKAGES curl-dev build-base bash cmake clang clang-dev make gcc g++ libc-dev linux-headers libxml2 libxml2-dev libxslt-dev
 ENV RUBY_PACKAGES cairo-dev postgresql-dev tzdata wget postgresql=10.5-r0
 ENV WKHTMLTOPDF_PACKAGES gtk+ glib ttf-freefont fontconfig dbus
 
