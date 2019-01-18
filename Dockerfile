@@ -29,5 +29,6 @@ ENV LC_ALL en_US.UTF-8
 ENV LANG=en_US.UTF-8
 ENV LANGUAGE=en_US.UTF-8
 
-RUN gem install bundler --no-ri --no-rdoc
+RUN gem install bundler --no-doc
+RUN gem install bundler -v '< 2' --no-doc
 RUN npm install -g yarn
