@@ -1,0 +1,20 @@
+image: docker:stable
+
+variables:
+  DOCKER_HOST: tcp://docker:2375/
+  # When using dind, it's wise to use the overlayfs driver for
+  # improved performance.
+  DOCKER_DRIVER: overlay2
+services:
+  - docker:dind
+
+before_script:
+  - docker info
+build:
+  stage: build
+  script:
+    - ./build.sh
+  tags:
+    - dind
+  only:
+    - master
