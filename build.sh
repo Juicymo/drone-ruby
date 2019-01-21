@@ -31,6 +31,8 @@ build_version (){
     image_version=$1
     pg_version=$2
     sudo_string=$3
+    general="$(echo ${image_version} | cut -d '|' -f1 -s)"
+    image_version="$(echo ${image_version} | cut -d '|' -f2)"
     ruby_version="$(echo ${image_version} | cut -d '-' -f1)"
 
     sed -e "s/%%FROM%%/$image_version/g" \
@@ -39,8 +41,15 @@ build_version (){
      Dockerfile.template > Dockerfile
 
      ${sudo_string} docker build .
-     ${sudo_string} docker build -t juicymo/drone-ruby:$ruby_version .
-     ${sudo_string} docker push juicymo/drone-ruby:$ruby_version
+     ${sudo_string} docker build -t juicymo/drone-ruby:${ruby_version} .
+     ${sudo_string} docker push juicymo/drone-ruby:${ruby_version}
+
+    if [[ ${general} == "g" ]]
+    then
+        minor_version="$(echo ${ruby_version} | cut -d '.' -f1-2)"
+        ${sudo_string} docker build -t juicymo/drone-ruby:${minor_version} .
+        ${sudo_string} docker push juicymo/drone-ruby:${minor_version}
+    fi
 }
 
 if [[ ${image} == "" ]] ; then
