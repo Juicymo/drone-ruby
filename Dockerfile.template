@@ -32,3 +32,4 @@ ENV LANGUAGE=en_US.UTF-8
 RUN gem install bundler --no-doc
 RUN gem install bundler --no-doc -v '< 2'
 RUN npm install -g yarn
+RUN curl -sL https://sentry.io/get-cli/ | bash
