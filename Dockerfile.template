@@ -17,8 +17,7 @@ RUN apk add --no-cache \
     git \
     imagemagick \
     less \
-    nodejs \
-    nodejs-npm \
+    nodejs npm \
     python2 \
     openssh
 
