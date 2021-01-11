@@ -1,0 +1,29 @@
+# see https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/ for Dockerfile best practices
+
+# build me with:
+# docker build -t "juicymo/drone-ruby:2.5.3" .
+
+FROM ruby:%%FROM%%
+MAINTAINER Tomas Jukin <tomas.jukin@juicymo.cz>
+
+ENV BUILD_PACKAGES build-essential git gnupg2 ssh less curl
+ENV RUBY_PACKAGES postgresql wget libpq-dev wkhtmltopdf imagemagick
+#ENV WKHTMLTOPDF_PACKAGES gtk+ glib ttf-freefont fontconfig dbus
+RUN apt-get update && apt-get install -qq --no-install-recommends \
+        $BUILD_PACKAGES \
+        $RUBY_PACKAGES && \
+        curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
+        apt-get update && apt-get install -y nodejs && \
+        rm -rf /var/lib/apt/lists/*
+
+#RUN wget --no-check-certificate https://github.com/kernix/wkhtmltopdf-docker-alpine/raw/master/wkhtmltopdf -P /usr/bin/
+#RUN chmod a+x /usr/bin/wkhtmltopdf
+
+ENV SHELL /bin/bash
+ENV LC_ALL en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8
+
+RUN gem install bundler --no-doc
+RUN gem install bundler --no-doc -v '< 2'
+RUN npm install -g yarn

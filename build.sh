@@ -25,42 +25,54 @@ if [[ ${use_sudo} == 1 ]]
         sudo_string=""
 fi
 
-${sudo_string} docker login -u ${DOCKER_HUB_USER} -p ${DOCKER_HUB_PASSWORD}
+#${sudo_string} docker login -u ${DOCKER_HUB_USER} -p ${DOCKER_HUB_PASSWORD}
 
 build_version (){
   image_version=$1
   pg_version=$2
   sudo_string=$3
-  general="$(echo ${image_version} | cut -d '|' -f1 -s)"
+  flag="$(echo ${image_version} | cut -d '|' -f1 -s)"
   image_version="$(echo ${image_version} | cut -d '|' -f2)"
   ruby_version="$(echo ${image_version} | cut -d '-' -f1)"
+  template=Dockerfile.template
+
+  if [[ ${flag} == "d" ]]
+  then
+    template=Dockerfile_debian.template
+  fi
 
   sed -e "s/%%FROM%%/$image_version/g" \
       -e "s/%%TAG%%/$ruby_version/g" \
       -e "s/%%POSTGRES%%/$pg_version/g" \
-      Dockerfile.template > Dockerfile
+      $template > Dockerfile
 
   ${sudo_string} docker build .
   ${sudo_string} docker build -t juicymo/drone-ruby:${ruby_version} .
-  ${sudo_string} docker push juicymo/drone-ruby:${ruby_version}
+#  ${sudo_string} docker push juicymo/drone-ruby:${ruby_version}
 
-  if [[ ${general} == "g" ]]
+  if [[ ${flag} == "g" ]]
   then
       minor_version="$(echo ${ruby_version} | cut -d '.' -f1-2)"
       ${sudo_string} docker build -t juicymo/drone-ruby:${minor_version} .
-      ${sudo_string} docker push juicymo/drone-ruby:${minor_version}
+#      ${sudo_string} docker push juicymo/drone-ruby:${minor_version}
   fi
 
-  echo "RUN apk add --no-cache chromium" >> Dockerfile
+  if [[ ${flag} == "d" ]]
+    then
+      echo "RUN apt-get update && apt-get install -y chromium" >> Dockerfile
+    else
+      echo "RUN apk add --no-cache chromium" >> Dockerfile
+  fi
+
   ${sudo_string} docker build .
   ${sudo_string} docker build -t juicymo/drone-ruby:${ruby_version}-chrome .
-  ${sudo_string} docker push juicymo/drone-ruby:${ruby_version}-chrome
+#  ${sudo_string} docker push juicymo/drone-ruby:${ruby_version}-chrome
 
-  if [[ ${general} == "g" ]]
+  if [[ ${flag} == "g" ]]
   then
       minor_version="$(echo ${ruby_version} | cut -d '.' -f1-2)"
       ${sudo_string} docker build -t juicymo/drone-ruby:${minor_version}-chrome .
-      ${sudo_string} docker push juicymo/drone-ruby:${minor_version}-chrome
+#      ${sudo_string} docker push juicymo/drone-ruby:${minor_version}-chrome
   fi
 }
 
