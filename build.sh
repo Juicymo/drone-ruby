@@ -48,13 +48,13 @@ build_version (){
 
   ${sudo_string} docker build .
   ${sudo_string} docker build -t juicymo/drone-ruby:${ruby_version} .
-#  ${sudo_string} docker push juicymo/drone-ruby:${ruby_version}
+  ${sudo_string} docker push juicymo/drone-ruby:${ruby_version}
 
   if [[ ${flag} == "g" ]]
   then
       minor_version="$(echo ${ruby_version} | cut -d '.' -f1-2)"
       ${sudo_string} docker build -t juicymo/drone-ruby:${minor_version} .
-#      ${sudo_string} docker push juicymo/drone-ruby:${minor_version}
+      ${sudo_string} docker push juicymo/drone-ruby:${minor_version}
   fi
 
   if [[ ${flag} == "d" ]]
@@ -66,13 +66,13 @@ build_version (){
 
   ${sudo_string} docker build .
   ${sudo_string} docker build -t juicymo/drone-ruby:${ruby_version}-chrome .
-#  ${sudo_string} docker push juicymo/drone-ruby:${ruby_version}-chrome
+  ${sudo_string} docker push juicymo/drone-ruby:${ruby_version}-chrome
 
   if [[ ${flag} == "g" ]]
   then
       minor_version="$(echo ${ruby_version} | cut -d '.' -f1-2)"
       ${sudo_string} docker build -t juicymo/drone-ruby:${minor_version}-chrome .
-#      ${sudo_string} docker push juicymo/drone-ruby:${minor_version}-chrome
+      ${sudo_string} docker push juicymo/drone-ruby:${minor_version}-chrome
   fi
 }
 
