@@ -38,7 +38,7 @@ build_version (){
 
   if [[ ${flag} == "d" ]]
   then
-    ruby_version=$ruby_version'-debian'
+    ruby_version="$ruby_version-debian"
     template=Dockerfile_debian.template
   fi
 
