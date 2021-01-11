@@ -25,7 +25,7 @@ if [[ ${use_sudo} == 1 ]]
         sudo_string=""
 fi
 
-#${sudo_string} docker login -u ${DOCKER_HUB_USER} -p ${DOCKER_HUB_PASSWORD}
+${sudo_string} docker login -u ${DOCKER_HUB_USER} -p ${DOCKER_HUB_PASSWORD}
 
 build_version (){
   image_version=$1
@@ -38,6 +38,7 @@ build_version (){
 
   if [[ ${flag} == "d" ]]
   then
+    ruby_version=$ruby_version'-debian'
     template=Dockerfile_debian.template
   fi
 
